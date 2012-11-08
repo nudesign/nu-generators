@@ -1,23 +1,28 @@
 <%%= form_for(@<%= singular_table_name %>) do |f| %>
-  <%% if @<%= singular_table_name %>.errors.any? %>
-    <div id="error_explanation">
-      <h2><%%= pluralize(@<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+  <%%#= render 'form_messages', object: @<%= singular_table_name %> %>
 
-      <ul>
-      <%% @<%= singular_table_name %>.errors.full_messages.each do |msg| %>
-        <li><%%= msg %></li>
-      <%% end %>
-      </ul>
+  <div class="field-group">
+  <%- attributes.each do |attribute| -%>
+    <div class="field">
+      <%%= f.label :<%= attribute.name %> %>
+      <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
     </div>
-  <%% end %>
-
-<% attributes.each do |attribute| -%>
-  <div class="field">
-    <%%= f.label :<%= attribute.name %> %><br />
-    <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
+  <%- end -%>
   </div>
-<% end -%>
+
   <div class="actions">
-    <%%= f.submit %>
+    <div class="field-group">
+      <%%= f.submit "save <%= singular_table_name %>", <%= key_value :class, "'btn btn-primary'" %> %>
+      <%%= link_to "cancel", :back, <%= key_value :class, "'btn'" %> %>
+    </div>
+
+    <%%#= render 'status', object: @<%= singular_table_name %>, f: f %>
+
+    <%%- unless @<%= singular_table_name %>.new_record? -%>
+    <div class="field-group">
+      <%%= link_to "visualize", @<%= singular_table_name %>, <%= key_value :class, "'btn'" %> %>
+      <%%= link_to "remove", @<%= singular_table_name %>, <%= key_value :method, ":delete" %>, <%= key_value :data, "{ confirm: 'Are you sure?' }" %>, <%= key_value :class, "'btn btn-danger'" %> %>
+    </div>
+    <%%- end -%>
   </div>
 <%% end %>
