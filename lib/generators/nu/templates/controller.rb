@@ -1,4 +1,6 @@
 class <%= class_name %>Controller < ApplicationController
+  #before_filter :authenticate_user!, except: [:show]
+
   def all
     @<%= plural_table_name %> = <%= class_name.singularize %>.all
     
