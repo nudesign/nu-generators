@@ -49,7 +49,7 @@ class <%= class_name %>Controller < ApplicationController
     
     respond_with do |format|
       if @<%= singular_table_name %>.update_attributes(params[:<%= singular_table_name %>])
-        format.html { redirect_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) }
+        format.html { redirect_to <%= plural_table_name %>_path }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
