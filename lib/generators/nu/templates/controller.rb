@@ -9,7 +9,7 @@ class <%= class_name %>Controller < ApplicationController
   end
   
   def show
-    @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
+    @<%= singular_table_name %> = <%= class_name.singularize %>.find_by_slug(params[:id])
     
     respond_with do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class <%= class_name %>Controller < ApplicationController
   end
   
   def edit
-    @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
+    @<%= singular_table_name %> = <%= class_name.singularize %>.find_by_slug(params[:id])
   end
   
   def create
@@ -45,7 +45,7 @@ class <%= class_name %>Controller < ApplicationController
   end
   
   def update
-    @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
+    @<%= singular_table_name %> = <%= class_name.singularize %>.find_by_slug(params[:id])
     
     respond_with do |format|
       if @<%= singular_table_name %>.update_attributes(params[:<%= singular_table_name %>])
@@ -59,7 +59,7 @@ class <%= class_name %>Controller < ApplicationController
   end
   
   def destroy
-    @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
+    @<%= singular_table_name %> = <%= class_name.singularize %>.find_by_slug(params[:id])
     @<%= singular_table_name %>.destroy
     
     respond_with do |format|
