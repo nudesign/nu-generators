@@ -1,7 +1,7 @@
 # nu generators
 
-Personalized generator for scaffolds.
+personalized generator for scaffolds.
 
 ## usage:
 
-`$ rails generate scaffold NAME [field:type field:type]`
+`$ rails generate nu:scaffold NAME [field:type field:type] [options]`

@@ -18,6 +18,10 @@ module Nu
           template "views/#{view}.html.erb", "app/views/#{plural_name}/#{view}.html.erb"
         end
       end
+
+      def create_routes
+        route "resources :#{plural_name} do; get :all, on: :collection; end"
+      end
     end
   end
 end
