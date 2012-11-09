@@ -1,7 +1,7 @@
 module Nu
   module Generators
     class ScaffoldGenerator < Rails::Generators::NamedBase
-      source_root File.expand_path('../templates', __FILE__)
+      source_root File.expand_path('../templates/scaffold', __FILE__)
       
       argument :attributes, :type => :array, :default => [], :banner => "field:type field:type"
       

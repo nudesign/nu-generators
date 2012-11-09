@@ -1,0 +1,27 @@
+<div class="publisher small">
+  <h1>alterar sua senha</h1>
+
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="field-group">
+      <div class="field">
+        <%= f.label :password, "nova senha" %>
+        <%= f.password_field :password %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "confirmação da nova senha" %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <div class="field actions-inline">
+        <%= f.submit "alterar senha", class: 'btn' %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+
+</div>
