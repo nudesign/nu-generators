@@ -40,7 +40,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
         format.html { redirect_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) }
         format.json { render json: @<%= singular_table_name %>, status: :created, location: @<%= singular_table_name %> }
       else
-        format.html { render action: "new" }
+        format.html { render "new" }
         format.json { render json: @<%= singular_table_name %>.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
         format.html { redirect_to all_<%= plural_table_name %>_path }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render "edit" }
         format.json { render json: @<%= singular_table_name %>.errors, status: :unprocessable_entity }
       end
     end

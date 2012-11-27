@@ -1,5 +1,5 @@
-<%%= form_for(@<%= singular_table_name %>) do |f| %>
-  <%%#= render 'form_messages', object: @<%= singular_table_name %> %>
+<%%= form_for(<%= singular_table_name %>) do |f| %>
+  <%%#= render 'form_messages', object: <%= singular_table_name %> %>
 
   <div class="field-group">
   <%- attributes.each do |attribute| -%>
@@ -16,12 +16,12 @@
       <%%= link_to "cancel", :back, <%= key_value :class, "'btn'" %> %>
     </div>
 
-    <%%#= render 'status', object: @<%= singular_table_name %>, f: f %>
+    <%%#= render 'status', object: <%= singular_table_name %>, f: f %>
 
-    <%%- unless @<%= singular_table_name %>.new_record? -%>
+    <%%- unless <%= singular_table_name %>.new_record? -%>
     <div class="field-group">
-      <%%= link_to "visualize", @<%= singular_table_name %>, <%= key_value :class, "'btn'" %> %>
-      <%%= link_to "remove", @<%= singular_table_name %>, <%= key_value :method, ":delete" %>, <%= key_value :data, "{ confirm: 'Are you sure?' }" %>, <%= key_value :class, "'btn btn-danger'" %> %>
+      <%%= link_to "visualize", <%= singular_table_name %>, <%= key_value :class, "'btn'" %> %>
+      <%%= link_to "remove", <%= singular_table_name %>, <%= key_value :method, ":delete" %>, <%= key_value :data, "{ confirm: 'Are you sure?' }" %>, <%= key_value :class, "'btn btn-danger'" %> %>
     </div>
     <%%- end -%>
   </div>

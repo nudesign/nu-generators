@@ -1,5 +1,5 @@
 <div class="publisher">
   <h1>new <%= singular_table_name %></h1>
 
-  <%%= render 'form' %>
+  <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
 </div>
