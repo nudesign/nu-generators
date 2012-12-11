@@ -6,9 +6,11 @@ Personalized generator for scaffolds.
 
 Add this line to your application's Gemfile:
 
-  group :development do
-    gem 'nu-generators', '~> 0.0.2'
-  end
+``` ruby
+group :development do
+  gem 'nu-generators', '~> 0.0.2'
+end
+```
 
 And then execute:
 
