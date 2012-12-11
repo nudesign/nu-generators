@@ -1,6 +1,18 @@
 # nu generators
 
-personalized generator for scaffolds.
+Personalized generator for scaffolds.
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+  group :development do
+    gem 'nu-generators', '~> 0.0.2'
+  end
+
+And then execute:
+
+    $ bundle install
 
 ## usage:
 
