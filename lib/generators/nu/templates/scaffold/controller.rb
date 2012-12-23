@@ -46,7 +46,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
     
     respond_to do |format|
       if @<%= singular_table_name %>.save
-        format.html { redirect_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) }
+        format.html { redirect_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), <%= key_value :notice, "'#{human_name} was successfully created.'" %> }        
         format.json { render json: @<%= singular_table_name %>, status: :created, location: @<%= singular_table_name %> }
       else
         format.html { render "new" }
@@ -60,7 +60,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
     
     respond_to do |format|
       if @<%= singular_table_name %>.update_attributes(params[:<%= singular_table_name %>])
-        format.html { redirect_to all_<%= plural_table_name %>_path }
+        format.html { redirect_to all_<%= plural_table_name %>_path, <%= key_value :notice, "'#{human_name} was successfully updated.'" %> }        
         format.json { head :ok }
       else
         format.html { render "edit" }
