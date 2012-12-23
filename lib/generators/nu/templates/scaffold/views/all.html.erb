@@ -1,27 +1,31 @@
-<h1>Listing <%= plural_table_name %></h1>
+<div class="publisher">
+  <h1><%%= t("publisher.listing") %> <%%= t("menu.<%= plural_table_name %>") %></h1>
+  <%%= link_to "+ #{t('publisher.new')}", new_<%= singular_table_name %>_path, <%= key_value :class, "'btn btn-primary'" %> %>
 
-<table>
-  <tr>
+  <table>
+    <thead>
+      <tr>
 <% attributes.each do |attribute| -%>
-    <th><%= attribute.human_name %></th>
+        <th><%= attribute.human_name %></th>
 <% end -%>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+        <th></th>
+      </tr>
+    </thead>
 
-<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-  <tr>
+    <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr class="#cycle('odd', 'even')">
 <% attributes.each do |attribute| -%>
-    <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
 <% end -%>
-    <td><%%= link_to 'Show', <%= singular_table_name %> %></td>
-    <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %></td>
-    <td><%%= link_to 'Destroy', <%= singular_table_name %>, <%= key_value :method, ":delete" %>, <%= key_value :data, "{ confirm: 'Are you sure?' }" %> %></td>
-  </tr>
-<%% end %>
-</table>
+        <td>
+          <%%= link_to t('publisher.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), <%= key_value :class, "'btn btn-mini btn-danger'" %> %>
+          <%%= link_to t('publisher.destroy'), <%= singular_table_name %>, <%= key_value :method, ":delete" %>, <%= key_value :data, "{ confirm: t('publisher.confirm') }" %>, <%= key_value :class, "'btn btn-mini btn-danger'" %> %></td>
+        </td>
+      </tr>
+    <%% end %>
+    </tbody>
+  </table>
 
-<br />
-
-<%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %>
+  <%%= link_to "+ #{t('publisher.new')}", new_<%= singular_table_name %>_path, <%= key_value :class, "'btn btn-primary'" %> %>
+</div>

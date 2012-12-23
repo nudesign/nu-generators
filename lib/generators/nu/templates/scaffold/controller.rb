@@ -1,7 +1,7 @@
 class <%= class_name.pluralize %>Controller < ApplicationController
-  #before_filter :authenticate_user!, except: [:show]
+  #before_filter :authenticate_user!, except: [:index, :show]
 
-  def all
+  def index
     @<%= plural_table_name %> = <%= class_name.singularize %>.all
     
     respond_to do |format|
@@ -9,13 +9,22 @@ class <%= class_name.pluralize %>Controller < ApplicationController
       format.json { render json: @<%= plural_table_name %> }
     end
   end
-  
+
   def show
-    @<%= singular_table_name %> = <%= class_name.singularize %>.find_by_slug(params[:id])
+    @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @<%= singular_table_name %> }
+    end
+  end
+
+  def all
+    @<%= plural_table_name %> = <%= class_name.singularize %>.all
+    
+    respond_to do |format|
+      format.html # all.html.erb
+      format.json { render json: @<%= plural_table_name %> }
     end
   end
   
@@ -29,7 +38,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
   end
   
   def edit
-    @<%= singular_table_name %> = <%= class_name.singularize %>.find_by_slug(params[:id])
+    @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
   end
   
   def create
@@ -37,7 +46,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
     
     respond_to do |format|
       if @<%= singular_table_name %>.save
-        format.html { redirect_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) }
+        format.html { redirect_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), <%= key_value :notice, "'#{human_name} was successfully created.'" %> }        
         format.json { render json: @<%= singular_table_name %>, status: :created, location: @<%= singular_table_name %> }
       else
         format.html { render "new" }
@@ -47,11 +56,11 @@ class <%= class_name.pluralize %>Controller < ApplicationController
   end
   
   def update
-    @<%= singular_table_name %> = <%= class_name.singularize %>.find_by_slug(params[:id])
+    @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
     
     respond_to do |format|
       if @<%= singular_table_name %>.update_attributes(params[:<%= singular_table_name %>])
-        format.html { redirect_to all_<%= plural_table_name %>_path }
+        format.html { redirect_to all_<%= plural_table_name %>_path, <%= key_value :notice, "'#{human_name} was successfully updated.'" %> }        
         format.json { head :ok }
       else
         format.html { render "edit" }
@@ -61,7 +70,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
   end
   
   def destroy
-    @<%= singular_table_name %> = <%= class_name.singularize %>.find_by_slug(params[:id])
+    @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
     @<%= singular_table_name %>.destroy
     
     respond_to do |format|
