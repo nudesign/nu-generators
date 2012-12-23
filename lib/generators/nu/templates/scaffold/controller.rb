@@ -1,7 +1,7 @@
 class <%= class_name.pluralize %>Controller < ApplicationController
-  #before_filter :authenticate_user!, except: [:show]
+  #before_filter :authenticate_user!, except: [:index, :show]
 
-  def all
+  def index
     @<%= plural_table_name %> = <%= class_name.singularize %>.all
     
     respond_to do |format|
@@ -9,13 +9,22 @@ class <%= class_name.pluralize %>Controller < ApplicationController
       format.json { render json: @<%= plural_table_name %> }
     end
   end
-  
+
   def show
     @<%= singular_table_name %> = <%= class_name.singularize %>.find(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @<%= singular_table_name %> }
+    end
+  end
+
+  def all
+    @<%= plural_table_name %> = <%= class_name.singularize %>.all
+    
+    respond_to do |format|
+      format.html # all.html.erb
+      format.json { render json: @<%= plural_table_name %> }
     end
   end
   
