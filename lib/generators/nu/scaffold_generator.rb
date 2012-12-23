@@ -12,7 +12,7 @@ module Nu
       end
       
       def create_views_files
-        views = %w(index show all edit new _form)
+        views = %w(index show all edit new _form)        
         
         views.each do |view|
           template "views/#{view}.html.erb", "app/views/#{plural_name}/#{view}.html.erb"
