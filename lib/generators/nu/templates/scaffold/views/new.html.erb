@@ -1,5 +1,6 @@
 <div class="publisher">
-  <h1>new <%= singular_table_name %></h1>
+  <h1><%%= t("publisher.new") %> <%= t("menu.<%= singular_table_name %>") %></h1>
+  <%%= link_to "« #{t('publisher.list_all')}", all_<%= plural_table_name %>_path, <%= key_value :class, "btn" %> %>
 
   <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
 </div>
