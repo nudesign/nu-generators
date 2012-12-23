@@ -1,0 +1,21 @@
+<h1>Listing <%= plural_table_name %></h1>
+
+<table>
+  <tr>
+<% attributes.each do |attribute| -%>
+    <th><%= attribute.human_name %></th>
+<% end -%>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+  <tr>
+<% attributes.each do |attribute| -%>
+    <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+    <td><%%= link_to 'Show', <%= singular_table_name %> %></td>
+  </tr>
+<%% end %>
+</table>
