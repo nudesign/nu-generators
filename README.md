@@ -8,7 +8,7 @@ Add this line to your application's Gemfile:
 
 ``` ruby
 group :development do
-  gem 'nu-generators', '~> 0.0.2'
+  gem 'nu-generators', '~> 0.0.3'
 end
 ```
 
